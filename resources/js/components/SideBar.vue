@@ -1,7 +1,7 @@
 <template>
     <ul class="list-group">
         <li class="list-group-item"><router-link to="/add-expense">Menu 1</router-link></li>
-        <li class="list-group-item">Menu 2</li>
+        <li class="list-group-item"><router-link to="/expenses">Menu 2</router-link></li>
         <li class="list-group-item">Menu 3</li>
     </ul>    
 </template>
