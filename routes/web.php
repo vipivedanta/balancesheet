@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::fallback(function(){
+
+    if( Auth::check())
+        return view('home');
+    else
+        return redirect()->route('login');
+});
