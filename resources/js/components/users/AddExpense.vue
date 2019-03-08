@@ -2,6 +2,8 @@
     
     <div>
         <div v-show="invalidForm" class="alert alert-danger">You haven't filled all the fields!</div>
+        <div v-show="saveFailure" class="alert alert-warning">Could not save the data.Please try after sometime</div>
+        <div v-show="!saveFailure && apiResponse" class="alert alert-success">New expense details are saved.Click <router-link to="expenses">expenses</router-link> to see your expenses</div>
 
         <form method="POST" action="">
         <div class="form-group">
@@ -17,11 +19,12 @@
 
         <div class="form-group">
             <label>Comment(Optional)</label>
-            <textarea class="form-control"></textarea>
+            <textarea class="form-control" v-model="expense.comments"></textarea>
         </div>
 
         <div class="form-group">
-            <input type="button" v-on:click="validateExpense" class="btn btn-info float-right" value="Save" />
+            <input v-if="!showLoader" type="button" v-on:click="validateExpense" class="btn btn-info float-right" value="Save" />
+            <input v-if="showLoader" type="button" class="btn btn-info disabled float-right" value="Saving.." />
         </div>
         </form>
     </div>
@@ -29,6 +32,9 @@
 </template>
 
 <script>
+
+import { mapActions } from 'vuex';
+
 export default {
     name : 'AddExpense',
     data(){
@@ -38,17 +44,27 @@ export default {
                     amount : null,
                     comments : null
                 },
-                invalidForm : false
+                invalidForm : false,
+                showLoader : false,
+                saveFailure : false,
+                apiResponse : false
            }
     },
     methods : {
+        ...mapActions(['saveExpense']),
         validateExpense : function(){
             this.$validator.validateAll().then( (result) => {
                 if(result){     
-                    this.invalidForm = false;               
+                    this.invalidForm = false;   
+                    this.showLoader = true;
+                    this.saveExpense( this.expense ).then( (response) => {
+                        this.showLoader = false;
+                        this.saveFailure = !response.data.status;
+                        this.apiResponse = response.data;
+                    }); 
                     return;
                 }
-                this.invalidForm = true;               
+                this.invalidForm = true; 
             });
         }
     }
