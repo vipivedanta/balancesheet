@@ -20,3 +20,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.alert{
+    text-align: center;
+}
+</style>
