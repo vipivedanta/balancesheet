@@ -34,4 +34,28 @@ class ExpenseController extends Controller
             ],200);
         }
     }
+
+    /**
+     * Get expenses
+     * @param search params
+     * @return expense object
+     */
+    public function get(Request $request){
+        try{
+
+            sleep(3);
+            $expenses = Auth::user()->expense()->paginate(5);
+            return response()->json([
+                'status' => true,
+                'expenses' => $expenses,
+                'links' => (string)$expenses->links()
+            ]);
+
+        }catch(Exception $e){
+            return response()->json([
+                'status' => false,
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
 }

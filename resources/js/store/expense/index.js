@@ -1,8 +1,11 @@
 import actions from './actions';
+import getters from './getters';
+import mutations from './mutations';
 
-const getters = {};
-const mutations = {};
-const state = {};
+const state = {
+    expenses : [],
+    paginationLinks : ''
+};
 
 export default{
     state,

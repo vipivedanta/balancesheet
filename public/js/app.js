@@ -1905,6 +1905,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1933,13 +1938,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ExpenseList'
+  name: 'ExpenseList',
+  data: function data() {
+    return {
+      search: {
+        expenses: null,
+        comment: null,
+        date: null,
+        page: 0
+      },
+      expensesReady: false,
+      showLoader: false
+    };
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['fetchExpenses']), {
+    showExpenses: function showExpenses() {
+      var _this = this;
+
+      this.showLoader = true;
+      this.fetchExpenses(this.search).then(function (response) {
+        _this.expensesReady = true;
+        _this.showLoader = false;
+      });
+    },
+    pagainteExpenses: function pagainteExpenses(e) {
+      e.preventDefault();
+      this.search.page = parseInt(e.target.innerHTML);
+      this.showExpenses();
+    }
+  }),
+  created: function created() {
+    this.showExpenses();
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['getExpenses', 'getPaginationLinks']))
 });
 
 /***/ }),
@@ -46621,7 +46654,11 @@ var render = function() {
     _c(
       "li",
       { staticClass: "list-group-item" },
-      [_c("router-link", { attrs: { to: "/expenses" } }, [_vm._v("Menu 2")])],
+      [
+        _c("router-link", { attrs: { to: "/expenses" } }, [
+          _vm._v("My Expenses")
+        ])
+      ],
       1
     ),
     _vm._v(" "),
@@ -46843,62 +46880,66 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm.expensesReady && !_vm.showLoader
+      ? _c("div", { staticClass: "alert alert-info" }, [
+          _vm._v("Your expenses so far")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showLoader
+      ? _c("div", { staticClass: "alert alert-info" }, [
+          _vm._v("Loading expenses...")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "table",
+      { staticClass: "table table-bordered table-striped table-condensed" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.getExpenses, function(expense, key) {
+            return _c("tr", { key: key }, [
+              _c("td", [_vm._v(_vm._s(expense.expense))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(expense.amount))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(expense.comments))])
+            ])
+          }),
+          0
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", {
+      staticClass: "float-right",
+      domProps: { innerHTML: _vm._s(_vm.getPaginationLinks) },
+      on: {
+        click: function($event) {
+          return _vm.pagainteExpenses($event)
+        }
+      }
+    })
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "table",
-      { staticClass: "table table-bordered table-striped table-condensed" },
-      [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("First")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Last")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Handle")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Expense")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Mark")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Otto")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("@mdo")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Jacob")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Thornton")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("@fat")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Larry")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("the Bird")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("@twitter")])
-          ])
-        ])
-      ]
-    )
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Comments")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -63207,12 +63248,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 var actions = {
+  /* save expense */
   saveExpense: function saveExpense(_ref, expense) {
     var commit = _ref.commit;
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('save-expense', expense);
+  },
+
+  /* get expenses */
+  fetchExpenses: function fetchExpenses(_ref2, params) {
+    var commit = _ref2.commit;
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('get-expenses?page=' + params.page, params).then(function (response) {
+      if (response.data.status) {
+        commit('setExpenses', response.data.expenses.data);
+        commit('setPaginationLinks', response.data.links);
+      }
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
+
+/***/ }),
+
+/***/ "./resources/js/store/expense/getters.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/expense/getters.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var getters = {
+  getExpenses: function getExpenses(state) {
+    return state.expenses;
+  },
+  getPaginationLinks: function getPaginationLinks(state) {
+    return state.paginationLinks;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (getters);
 
 /***/ }),
 
@@ -63226,16 +63300,42 @@ var actions = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./resources/js/store/expense/actions.js");
+/* harmony import */ var _getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getters */ "./resources/js/store/expense/getters.js");
+/* harmony import */ var _mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mutations */ "./resources/js/store/expense/mutations.js");
 
-var getters = {};
-var mutations = {};
-var state = {};
+
+
+var state = {
+  expenses: [],
+  paginationLinks: ''
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
-  getters: getters,
-  mutations: mutations,
+  getters: _getters__WEBPACK_IMPORTED_MODULE_1__["default"],
+  mutations: _mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
   actions: _actions__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
+
+/***/ }),
+
+/***/ "./resources/js/store/expense/mutations.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/expense/mutations.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var mutations = {
+  setExpenses: function setExpenses(state, expenses) {
+    return state.expenses = expenses;
+  },
+  setPaginationLinks: function setPaginationLinks(state, links) {
+    return state.paginationLinks = links;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (mutations);
 
 /***/ }),
 

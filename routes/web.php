@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/save-expense','ExpenseController@save');
+Route::get('/get-expenses','ExpenseController@get');
 Route::fallback(function(){
 
     if( Auth::check())
