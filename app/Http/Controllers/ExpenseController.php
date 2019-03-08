@@ -43,8 +43,12 @@ class ExpenseController extends Controller
     public function get(Request $request){
         try{
 
-            sleep(3);
-            $expenses = Auth::user()->expense()->paginate(5);
+            $expenses = Auth::user()->expense();
+
+            if($request->has('search'))
+                $expenses = $expenses->where('expense','like','%'.$request->search['expense'].'%');
+            
+            $expenses = $expenses->paginate(5);
             return response()->json([
                 'status' => true,
                 'expenses' => $expenses,

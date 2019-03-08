@@ -8,8 +8,8 @@ const actions = {
     }, 
 
     /* get expenses */
-    fetchExpenses( {commit }, params ){
-        return axios.get('get-expenses?page=' + params.page, params ).then( (response) => {
+    fetchExpenses( {commit }, filterParams ){
+        return axios.get('get-expenses?page=' + params.page, filterParams ).then( (response) => {
             if(response.data.status){
                 commit('setExpenses', response.data.expenses.data);
                 commit('setPaginationLinks',response.data.links);

@@ -4,6 +4,8 @@
         <div v-if="expensesReady && !showLoader" class="alert alert-info">Your expenses so far</div>
         <div v-if="showLoader" class="alert alert-info">Loading expenses...</div>
 
+        <ExpenseFilter search="search" @filterQueryUpdated="showExpenses"></ExpenseFilter>
+
         <table class="table table-bordered table-striped table-condensed">
         <thead>
         <tr>
@@ -29,14 +31,18 @@
 <script>
 
 import { mapActions, mapGetters } from 'vuex';
+import ExpenseFilter from './ExpenseFilter';
 
 export default {
     name : 'ExpenseList',
+    components : {
+      ExpenseFilter
+    },
     data(){
       return {
           search : {
               expenses : null,
-              comment : null, 
+              comments : null, 
               date : null,
               page : 0
           },
