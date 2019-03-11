@@ -1,5 +1,11 @@
 import axios from 'axios';
 import env from '../env';
-const axios = axios.create({
-    baseUrl : env.api_url
+const axiosObject = axios.create({
+    baseURL : env.api_url,
+    data : {},
+    headers: {
+        'Content-Type': 'application/json'
+      }
 });
+
+export default axiosObject;

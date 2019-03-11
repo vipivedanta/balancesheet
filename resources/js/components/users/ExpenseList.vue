@@ -1,14 +1,16 @@
 <template>
       <div>
 
-        <div v-if="expensesReady && !showLoader" class="alert alert-info">Your expenses so far</div>
+        <div v-if="getExpenses.length>0 && !showLoader" class="alert alert-info">Your expenses so far</div>
         <div v-if="showLoader" class="alert alert-info">Loading expenses...</div>
+        <ExpenseFilter v-bind:search="search" @filterQueryUpdated="showExpenses"></ExpenseFilter>
+        
+        <div v-if="getExpenses.length==0" class="alert alert-warning">No expenses found</div>
 
-        <ExpenseFilter search="search" @filterQueryUpdated="showExpenses"></ExpenseFilter>
-
-        <table class="table table-bordered table-striped table-condensed">
+        <table v-if="getExpenses.length>0" class="table table-bordered table-striped table-condensed">
         <thead>
         <tr>
+        <th scope="col">Date</th>
         <th scope="col">Expense</th>
         <th scope="col">Amount</th>
         <th scope="col">Comments</th>
@@ -16,8 +18,9 @@
         </thead>
         <tbody>
         <tr v-for="(expense,key) in getExpenses" v-bind:key="key">
+        <td>{{ expense.created_at | moment('DD MMMM,YYYY') }}</td>
         <td>{{ expense.expense }}</td>
-        <td>{{ expense.amount }}</td>
+        <td class="text-right">{{ expense.amount }}</td>
         <td>{{ expense.comments }}</td>
         </tr>
         </tbody>

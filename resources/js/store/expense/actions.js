@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axios';
 
 const actions = {
     
@@ -9,7 +9,7 @@ const actions = {
 
     /* get expenses */
     fetchExpenses( {commit }, filterParams ){
-        return axios.get('get-expenses?page=' + params.page, filterParams ).then( (response) => {
+        return axios.get('get-expenses?page=' + filterParams.page, { params : {...filterParams}} ).then( (response) => {
             if(response.data.status){
                 commit('setExpenses', response.data.expenses.data);
                 commit('setPaginationLinks',response.data.links);

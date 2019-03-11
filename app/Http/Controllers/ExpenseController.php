@@ -42,13 +42,22 @@ class ExpenseController extends Controller
      */
     public function get(Request $request){
         try{
+           $expenses = Auth::user()->expense();
 
-            $expenses = Auth::user()->expense();
+            if($request->has('expense')){
+                $expenses = $expenses->where('expense','like','%'.$request->expense.'%');
+            }
 
-            if($request->has('search'))
-                $expenses = $expenses->where('expense','like','%'.$request->search['expense'].'%');
+            if($request->has('comments')){
+                $expenses = $expenses->where('comments','like','%'.$request->comments.'%');
+            }
+
+            if($request->has('date')){
+                $date = date('Y-m-d',strtotime($request->date));
+                $expenses = $expenses->whereDate('created_at',$date);
+            }
             
-            $expenses = $expenses->paginate(5);
+            $expenses = $expenses->orderBy('created_at','DESC')->paginate(5);
             return response()->json([
                 'status' => true,
                 'expenses' => $expenses,
