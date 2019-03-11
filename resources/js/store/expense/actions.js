@@ -15,6 +15,11 @@ const actions = {
                 commit('setPaginationLinks',response.data.links);
             }
         });
+    },
+
+    /* get expense names */
+    getExpenseNames({commit}){
+        return axios.get('expense-names').then( (response) => commit('setExpenseNames',response.data.expenses));
     }
 
 };

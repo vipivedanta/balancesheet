@@ -71,4 +71,24 @@ class ExpenseController extends Controller
             ]);
         }
     }
+
+    /**
+     * Get expense names
+     * @param void
+     * @return expense-names array
+     */
+    public function getExpenseNames(){
+        try{
+            
+            $expenses = Auth::user()->expense;
+            $result = [];
+            foreach($expenses as $ex)
+                $result[] = $ex->expense;
+
+            return response()->json(['status' => true, 'expenses' => array_values(array_unique($result))]);
+
+        }catch(Exception $e){
+            return response()->json(['status' => false,'expenses' => []]);
+        }
+    }
 }

@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "vee-validate": "^2.1.7",
+        "vue-bootstrap-typeahead": "^0.2.6",
         "vue-moment": "^4.0.0",
         "vue-router": "^3.0.2",
         "vuejs-datepicker": "^1.5.4",

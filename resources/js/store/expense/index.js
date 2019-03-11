@@ -4,7 +4,8 @@ import mutations from './mutations';
 
 const state = {
     expenses : [],
-    paginationLinks : ''
+    paginationLinks : '',
+    expenseNames : []
 };
 
 export default{

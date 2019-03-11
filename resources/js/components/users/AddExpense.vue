@@ -4,16 +4,16 @@
         <div v-show="invalidForm" class="alert alert-danger">You haven't filled all the fields!</div>
         <div v-show="saveFailure" class="alert alert-warning">Could not save the data.Please try after sometime</div>
         <div v-show="!saveFailure && apiResponse" class="alert alert-success">New expense details are saved.Click <router-link to="expenses">expenses</router-link> to see your expenses</div>
-
         <form method="POST" action="">
         <div class="form-group">
             <label>Expense</label>
-            <input type="text" v-model="expense.expense" class="form-control" v-validate="'required'" name="expense" /> 
+            <vue-bootstrap-typeahead v-validate="'required'" v-model="expense.expense" :size="'lg'" :data="expenseNames"></vue-bootstrap-typeahead>
+            <!--<input type="text" v-model="expense.expense" class="form-control" v-validate="'required'" name="expense" />--> 
             <p class="text text-danger">{{ errors.first('expense') }}</p>
         </div>   
         <div class="form-group">
             <label>Amount</label>
-            <input type="text" v-model="expense.amount" v-validate="'min_value:0.1'" name="amount" class="form-control" />
+            <input type="text" v-model="expense.amount" v-validate="'required|min_value:0.1'" name="amount" class="form-control" />
             <p class="text text-danger">{{ errors.first('amount') }}</p>
         </div>
 
@@ -33,10 +33,14 @@
 
 <script>
 
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
 
 export default {
     name : 'AddExpense',
+    components : {
+        VueBootstrapTypeahead
+    },
     data(){
         return {
                 expense : {
@@ -51,7 +55,7 @@ export default {
            }
     },
     methods : {
-        ...mapActions(['saveExpense']),
+        ...mapActions(['saveExpense','getExpenseNames']),
         validateExpense : function(){
             this.$validator.validateAll().then( (result) => {
                 if(result){     
@@ -67,6 +71,12 @@ export default {
                 this.invalidForm = true; 
             });
         }
+    }, 
+    computed : {
+        ...mapGetters(['expenseNames'])    
+    },
+    created(){
+        this.getExpenseNames()
     }
 }
 </script>
