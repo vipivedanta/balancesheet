@@ -79,7 +79,6 @@ class ExpenseController extends Controller
      */
     public function getExpenseNames(){
         try{
-            
             $expenses = Auth::user()->expense;
             $result = [];
             foreach($expenses as $ex)

@@ -6,17 +6,20 @@
         <div class="col-md-9">
             <router-view></router-view>
         </div>
+        <Loader></Loader>
     </div>
     
 </template>
 <script>
 
 import SideBar from '../components/SideBar';
+import Loader from '../components/Loader'
 
 export default {
     name : 'App',
     components : {
-        SideBar
+        SideBar,
+        Loader
     }
 }
 </script>

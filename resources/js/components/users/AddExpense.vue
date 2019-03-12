@@ -76,6 +76,7 @@ export default {
         ...mapGetters(['expenseNames'])    
     },
     created(){
+        this.$store.showLoader = true;
         this.getExpenseNames()
     }
 }
