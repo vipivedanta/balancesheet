@@ -21,6 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/save-expense','ExpenseController@save');
 Route::get('/get-expenses','ExpenseController@get');
 Route::get('/expense-names','ExpenseController@getExpenseNames');
+Route::post('save-income','IncomeController@save');
+Route::post('get-all-incomes','IncomeController@allIncomes');
+
 Route::fallback(function(){
 
     if( Auth::check())

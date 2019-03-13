@@ -43,4 +43,11 @@ class User extends Authenticatable
     public function expense(){
         return $this->hasMany(\App\Models\Expense::class,'user_id');
     }
+
+    /**
+     * to income
+     */
+    public function income(){
+        return $this->hasMany(\App\Models\Income::class,'user_id');
+    }
 }

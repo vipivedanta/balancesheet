@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Expense from './expense';
+import Income from './income';
 
 Vue.use(Vuex);
 const Store = new Vuex.Store({
     modules : {
-        Expense
+        Expense,
+        Income
     },
     state : {
         showLoader : false
