@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    name : 'DangerMessage',
+    name : 'InfoMessage',
     props : ['trueCondition']
 }
 </script>

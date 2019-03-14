@@ -34,8 +34,6 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex';
-import DangerMessage from '../../components/messages/DangerMessage';
-import SuccessMessage from '../../components/messages/SuccessMessage';
 import axios from '../../axios';
 
 export default {
@@ -45,10 +43,6 @@ export default {
            invalidForm : false,
            saveFailure : null
         }
-    },
-    components : {
-        DangerMessage,
-        SuccessMessage
     },
     methods : {
         validateForm(){

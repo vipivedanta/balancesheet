@@ -14,12 +14,14 @@
 
 import SideBar from '../components/SideBar';
 import Loader from '../components/Loader'
+import BaseComponents from '../components/base-components';
 
 export default {
     name : 'App',
     components : {
         SideBar,
-        Loader
+        Loader,
+       ...BaseComponents
     }
 }
 </script>

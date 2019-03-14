@@ -1765,6 +1765,11 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_SideBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/SideBar */ "./resources/js/components/SideBar.vue");
 /* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Loader */ "./resources/js/components/Loader.vue");
+/* harmony import */ var _components_base_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/base-components */ "./resources/js/components/base-components/index.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1777,14 +1782,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
-  components: {
+  components: _objectSpread({
     SideBar: _components_SideBar__WEBPACK_IMPORTED_MODULE_0__["default"],
     Loader: _components_Loader__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }
+  }, _components_base_components__WEBPACK_IMPORTED_MODULE_2__["default"])
 });
 
 /***/ }),
@@ -1852,9 +1858,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_messages_DangerMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/messages/DangerMessage */ "./resources/js/components/messages/DangerMessage.vue");
-/* harmony import */ var _components_messages_SuccessMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/messages/SuccessMessage */ "./resources/js/components/messages/SuccessMessage.vue");
-/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../axios */ "./resources/js/axios/index.js");
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../axios */ "./resources/js/axios/index.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1894,8 +1898,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddIncome',
   data: function data() {
@@ -1903,10 +1905,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       invalidForm: false,
       saveFailure: null
     };
-  },
-  components: {
-    DangerMessage: _components_messages_DangerMessage__WEBPACK_IMPORTED_MODULE_1__["default"],
-    SuccessMessage: _components_messages_SuccessMessage__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: _objectSpread({
     validateForm: function validateForm() {
@@ -1941,7 +1939,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_messages_InfoMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/messages/InfoMessage */ "./resources/js/components/messages/InfoMessage.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1972,13 +1969,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+ //import InfoMessage from '../../components/messages/InfoMessage';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ListIncome',
-  components: {
-    InfoMessage: _components_messages_InfoMessage__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
+
+  /*components :{
+      InfoMessage
+  },*/
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['allIncomes', 'paginationLinks'])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getIncomes', 'setPaginationLimit']), {
     paginateIncomes: function paginateIncomes(e) {
@@ -2030,7 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'DangerMessage',
+  name: 'InfoMessage',
   props: ['trueCondition']
 });
 
@@ -2072,6 +2070,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -49147,9 +49146,11 @@ var render = function() {
   return _c(
     "main",
     [
-      _c("InfoMessage", { attrs: { trueCondition: "allIncomes.length > 0" } }, [
-        _vm._v("Your credit transactions")
-      ]),
+      _c(
+        "info-message",
+        { attrs: { trueCondition: "allIncomes.length > 0" } },
+        [_vm._v("Your credit transactions")]
+      ),
       _vm._v(" "),
       _vm.allIncomes.length > 0
         ? _c(
@@ -49310,172 +49311,144 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.invalidForm,
-            expression: "invalidForm"
-          }
-        ],
-        staticClass: "alert alert-danger"
-      },
-      [_vm._v("You haven't filled all the fields!")]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.saveFailure,
-            expression: "saveFailure"
-          }
-        ],
-        staticClass: "alert alert-warning"
-      },
-      [_vm._v("Could not save the data.Please try after sometime")]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: !_vm.saveFailure && _vm.apiResponse,
-            expression: "!saveFailure && apiResponse"
-          }
-        ],
-        staticClass: "alert alert-success"
-      },
-      [
-        _vm._v("New expense details are saved.Click "),
-        _c("router-link", { attrs: { to: "expenses" } }, [_vm._v("expenses")]),
-        _vm._v(" to see your expenses")
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("form", { attrs: { method: "POST", action: "" } }, [
+  return _c(
+    "div",
+    [
+      _c("DangerMessage", { attrs: { trueCondition: _vm.invalidForm } }, [
+        _vm._v("You haven't filled all the fields!")
+      ]),
+      _vm._v(" "),
+      _c("DangerMessage", { attrs: { trueCondition: _vm.saveFailure } }, [
+        _vm._v("Could not save the data.Please try after sometime")
+      ]),
+      _vm._v(" "),
       _c(
-        "div",
-        { staticClass: "form-group" },
+        "SuccessMessage",
+        { attrs: { trueCondition: !_vm.saveFailure && _vm.apiResponse } },
         [
-          _c("label", [_vm._v("Expense")]),
-          _vm._v(" "),
-          _c("vue-bootstrap-typeahead", {
-            directives: [
-              {
-                name: "validate",
-                rawName: "v-validate",
-                value: "required",
-                expression: "'required'"
-              }
-            ],
-            attrs: { size: "lg", data: _vm.expenseNames },
-            model: {
-              value: _vm.expense.expense,
-              callback: function($$v) {
-                _vm.$set(_vm.expense, "expense", $$v)
-              },
-              expression: "expense.expense"
-            }
-          }),
-          _vm._v(" "),
-          _c("p", { staticClass: "text text-danger" }, [
-            _vm._v(_vm._s(_vm.errors.first("expense")))
-          ])
+          _vm._v("New expense details are saved.Click "),
+          _c("router-link", { attrs: { to: "expenses" } }, [
+            _vm._v("expenses")
+          ]),
+          _vm._v(" to see your expenses")
         ],
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Amount")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.expense.amount,
-              expression: "expense.amount"
-            },
-            {
-              name: "validate",
-              rawName: "v-validate",
-              value: "required|min_value:0.1",
-              expression: "'required|min_value:0.1'"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", name: "amount" },
-          domProps: { value: _vm.expense.amount },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+      _c("form", { attrs: { method: "POST", action: "" } }, [
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", [_vm._v("Expense")]),
+            _vm._v(" "),
+            _c("vue-bootstrap-typeahead", {
+              directives: [
+                {
+                  name: "validate",
+                  rawName: "v-validate",
+                  value: "required",
+                  expression: "'required'"
+                }
+              ],
+              attrs: { size: "lg", data: _vm.expenseNames },
+              model: {
+                value: _vm.expense.expense,
+                callback: function($$v) {
+                  _vm.$set(_vm.expense, "expense", $$v)
+                },
+                expression: "expense.expense"
               }
-              _vm.$set(_vm.expense, "amount", $event.target.value)
-            }
-          }
-        }),
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text text-danger" }, [
+              _vm._v(_vm._s(_vm.errors.first("expense")))
+            ])
+          ],
+          1
+        ),
         _vm._v(" "),
-        _c("p", { staticClass: "text text-danger" }, [
-          _vm._v(_vm._s(_vm.errors.first("amount")))
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Amount")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.expense.amount,
+                expression: "expense.amount"
+              },
+              {
+                name: "validate",
+                rawName: "v-validate",
+                value: "required|min_value:0.1",
+                expression: "'required|min_value:0.1'"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", name: "amount" },
+            domProps: { value: _vm.expense.amount },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.expense, "amount", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "text text-danger" }, [
+            _vm._v(_vm._s(_vm.errors.first("amount")))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Comment(Optional)")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.expense.comments,
+                expression: "expense.comments"
+              }
+            ],
+            staticClass: "form-control",
+            domProps: { value: _vm.expense.comments },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.expense, "comments", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          !_vm.showLoader
+            ? _c("input", {
+                staticClass: "btn btn-info float-right",
+                attrs: { type: "button", value: "Save" },
+                on: { click: _vm.validateExpense }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showLoader
+            ? _c("input", {
+                staticClass: "btn btn-info disabled float-right",
+                attrs: { type: "button", value: "Saving.." }
+              })
+            : _vm._e()
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Comment(Optional)")]),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.expense.comments,
-              expression: "expense.comments"
-            }
-          ],
-          staticClass: "form-control",
-          domProps: { value: _vm.expense.comments },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.expense, "comments", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        !_vm.showLoader
-          ? _c("input", {
-              staticClass: "btn btn-info float-right",
-              attrs: { type: "button", value: "Save" },
-              on: { click: _vm.validateExpense }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.showLoader
-          ? _c("input", {
-              staticClass: "btn btn-info disabled float-right",
-              attrs: { type: "button", value: "Saving.." }
-            })
-          : _vm._e()
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -71700,6 +71673,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_moment__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/App */ "./resources/js/components/App.vue");
+/* harmony import */ var _components_base_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/base-components */ "./resources/js/components/base-components/index.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -71708,6 +71682,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
+_components_base_components__WEBPACK_IMPORTED_MODULE_5__["default"].forEach(function (component) {
+  Vue.component(component.name, component);
+});
 Vue.use(vee_validate__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.use(vue_moment__WEBPACK_IMPORTED_MODULE_2___default.a);
 new Vue({
@@ -72054,6 +72032,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SideBar_vue_vue_type_template_id_223abea1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/base-components/index.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/base-components/index.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _messages_InfoMessage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../messages/InfoMessage */ "./resources/js/components/messages/InfoMessage.vue");
+/* harmony import */ var _messages_DangerMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../messages/DangerMessage */ "./resources/js/components/messages/DangerMessage.vue");
+/* harmony import */ var _messages_SuccessMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../messages/SuccessMessage */ "./resources/js/components/messages/SuccessMessage.vue");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ([_messages_InfoMessage__WEBPACK_IMPORTED_MODULE_0__["default"], _messages_DangerMessage__WEBPACK_IMPORTED_MODULE_1__["default"], _messages_SuccessMessage__WEBPACK_IMPORTED_MODULE_2__["default"]]);
 
 /***/ }),
 

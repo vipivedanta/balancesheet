@@ -1,9 +1,10 @@
 <template>
     
     <div>
-        <div v-show="invalidForm" class="alert alert-danger">You haven't filled all the fields!</div>
-        <div v-show="saveFailure" class="alert alert-warning">Could not save the data.Please try after sometime</div>
-        <div v-show="!saveFailure && apiResponse" class="alert alert-success">New expense details are saved.Click <router-link to="expenses">expenses</router-link> to see your expenses</div>
+        <DangerMessage v-bind:trueCondition="invalidForm">You haven't filled all the fields!</DangerMessage>
+        <DangerMessage v-bind:trueCondition="saveFailure">Could not save the data.Please try after sometime</DangerMessage>
+        <SuccessMessage v-bind:trueCondition="!saveFailure && apiResponse">New expense details are saved.Click <router-link to="expenses">expenses</router-link> to see your expenses</SuccessMessage>
+
         <form method="POST" action="">
         <div class="form-group">
             <label>Expense</label>

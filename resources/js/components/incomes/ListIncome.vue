@@ -2,7 +2,7 @@
 
 <main>
 
-    <InfoMessage trueCondition="allIncomes.length > 0">Your credit transactions</InfoMessage>
+    <info-message trueCondition="allIncomes.length > 0">Your credit transactions</info-message>
 
     <table v-if="allIncomes.length > 0" class="table table-bordered table-condensed table-striped">
     <tr>
@@ -27,13 +27,13 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex';
-import InfoMessage from '../../components/messages/InfoMessage';
+//import InfoMessage from '../../components/messages/InfoMessage';
 
 export default {
     name : 'ListIncome',
-    components :{
+    /*components :{
         InfoMessage
-    },
+    },*/
     computed : {
         ...mapGetters( ['allIncomes','paginationLinks'] )
     },
